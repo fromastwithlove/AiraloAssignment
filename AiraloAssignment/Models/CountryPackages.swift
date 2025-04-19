@@ -13,7 +13,7 @@ struct CountryPackages: Codable {
     let packages: [Package]
 }
 
-struct Package: Codable {
+struct Package: Codable, Identifiable {
     let id: Int
     let data: String
     let validity: String

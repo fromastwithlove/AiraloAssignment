@@ -72,7 +72,7 @@ enum Endpoint {
 
 // MARK: - Network Service
 
-actor NetworkService {
+actor NetworkService: NetworkServiceProtocol {
     
     // MARK: - Private Properties
     
@@ -115,20 +115,34 @@ actor NetworkService {
     private let requestBuilder: RequestBuilder = .init()
     private let responseHandler: ResponseHandler = .init()
     
-    // MARK: - Public Methods
+    // MARK: - Network Service Protocol Methods
 
+    /// Fetches a list of popular countries from the API.
+    func fetchPopularCountries() async throws -> [Country] {
+        return try await performRequest(endpoint: Endpoint.countries.path, method: .get, params: ["type": "popular"])
+    }
+    
+    /// Fetches country-specific packages based on a given country ID.
+    func fetchCountryPackages(forCountryId id: Int) async throws -> CountryPackages {
+        return try await performRequest(endpoint: Endpoint.countryPackages(id: id).path, method: .get)
+    }
+    
+    // MARK: - Private Methods
+    
     /// Sends an HTTP request to the specified endpoint and decodes the response.
     ///
     /// - Parameters:
     ///   - endpoint: The API endpoint path relative to the base URL (e.g., "countries").
     ///   - method: The HTTP method to use (e.g., `.get`, `.head`, etc.).
+    ///   - params: Optional dictionary of query parameters to append to the URL.
     ///   - timeout: Optional timeout interval for the request.
     /// - Returns: A decoded object of type `D`.
     /// - Throws: An error if the request fails, the response is invalid, or decoding fails.
-    func performRequest<D: Decodable>(endpoint: String,
-                                                    method: HTTPMethod,
-                                                    timeout: TimeInterval? = nil) async throws -> D {
-        let url = apiBaseURL.appending(path: endpoint)
+    private func performRequest<D: Decodable>(endpoint: String,
+                                              method: HTTPMethod,
+                                              params: [String: String]? = nil,
+                                              timeout: TimeInterval? = nil) async throws -> D {
+        let url = buildURL(endpoint: endpoint, params: params)
         let request = requestBuilder.makeRequest(method: method, url: url, timeout: timeout)
         
         let startTime = Date()
@@ -137,5 +151,20 @@ actor NetworkService {
         
         try responseHandler.validate(response: response, for: request, with: duration)
         return try responseHandler.decode(response: response)
+    }
+    
+    /// Builds a URL with query parameters.
+    /// - Parameters:
+    ///   - endpoint: The API endpoint path relative to the base URL .
+    ///   - params: The query parameters to be added to the URL.
+    /// - Returns: The full URL with query parameters.
+    private func buildURL(endpoint: String, params: [String: String]?) -> URL {
+        let url = apiBaseURL.appending(path: endpoint)
+        
+        guard let params = params else { return url }
+            
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
+        return components?.url ?? url
     }
 }

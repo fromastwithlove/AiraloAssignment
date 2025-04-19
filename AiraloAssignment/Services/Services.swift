@@ -9,5 +9,5 @@
 /// This class is designed to be easily extended to include other services (e.g., `DatabaseService`, `NotificationService`)
 /// as the app grows, ensuring centralised management of all service instances.
 class Services {
-    let networkService: NetworkService = NetworkService()
+    let networkService: NetworkServiceProtocol = NetworkService()
 }
