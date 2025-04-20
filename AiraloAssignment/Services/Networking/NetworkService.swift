@@ -35,6 +35,7 @@ enum HTTPContentType {
 // MARK: - Network Errors
 
 enum NetworkError: LocalizedError {
+    case invalidURL(String)
     case invalidResponse
     case clientError(statusCode: Int)
     case serverError(statusCode: Int)
@@ -42,6 +43,8 @@ enum NetworkError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .invalidURL(let urlString):
+            return "The provided string URL was invalid: \(urlString)."
         case .invalidResponse:
             return "The response from the server was invalid."
         case .clientError(let statusCode):
@@ -127,6 +130,11 @@ actor NetworkService: NetworkServiceProtocol {
         return try await performRequest(endpoint: Endpoint.countryPackages(id: id).path, method: .get)
     }
     
+    /// Downloads the raw image data for a country flag from a given URL string.
+    func fetchCountryFlag(from urlString: String) async throws -> Data {
+        return try await performImageRequest(from: urlString)
+    }
+    
     // MARK: - Private Methods
     
     /// Sends an HTTP request to the specified endpoint and decodes the response.
@@ -166,5 +174,42 @@ actor NetworkService: NetworkServiceProtocol {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
         return components?.url ?? url
+    }
+    
+    /// Performs a network request to retrieve raw image data from a given URL string.
+    ///
+    /// This method attempts to construct a valid `URL` from the provided string, sends a data task request,
+    /// measures the request duration, validates the HTTP response, and returns the image as raw `Data`.
+    ///
+    /// - Parameter urlString: A string representing the complete image URL.
+    /// - Returns: The raw image data.
+    /// - Throws: A `NetworkError` if the URL is invalid or the response is invalid.
+    private func performImageRequest(from urlString: String) async throws -> Data {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.invalidURL(urlString)
+        }
+        
+        let startTime = Date()
+        let response: NetworkResponse = try await session.data(from: url)
+        let duration = Date().timeIntervalSince(startTime)
+        
+        guard let httpResponse = response.urlResponse as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
+        
+        #if DEBUG
+        logger.info("Image: \(url.lastPathComponent) - \(httpResponse.statusCode) - \(String(format: "%.2f", duration))s")
+        #endif
+        
+        switch httpResponse.statusCode {
+        case 200..<300:
+            return response.data
+        case 400..<500:
+            throw NetworkError.clientError(statusCode: httpResponse.statusCode)
+        case 500..<600:
+            throw NetworkError.serverError(statusCode: httpResponse.statusCode)
+        default:
+            throw NetworkError.unknownError(statusCode: httpResponse.statusCode)
+        }
     }
 }
