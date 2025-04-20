@@ -118,6 +118,10 @@ actor NetworkService: NetworkServiceProtocol {
     private let requestBuilder: RequestBuilder = .init()
     private let responseHandler: ResponseHandler = .init()
     
+    // In-memory cache to store already downloaded image data using their url as key.
+    // This helps avoid redundant network calls and improves performance.
+    private var imageCache: [String: Data] = [:]
+
     // MARK: - Network Service Protocol Methods
 
     /// Fetches a list of popular countries from the API.
@@ -132,6 +136,11 @@ actor NetworkService: NetworkServiceProtocol {
     
     /// Downloads the raw image data for a country flag from a given URL string.
     func fetchCountryFlag(from urlString: String) async throws -> Data {
+        // Check if the image data is already cached
+        if let cachedImage = imageCache[urlString] {
+            return cachedImage
+        }
+        
         return try await performImageRequest(from: urlString)
     }
     
@@ -203,6 +212,8 @@ actor NetworkService: NetworkServiceProtocol {
         
         switch httpResponse.statusCode {
         case 200..<300:
+            // Cache and return the image data
+            imageCache[urlString] = response.data
             return response.data
         case 400..<500:
             throw NetworkError.clientError(statusCode: httpResponse.statusCode)
