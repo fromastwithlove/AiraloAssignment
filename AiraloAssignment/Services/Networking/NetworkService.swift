@@ -82,12 +82,12 @@ actor NetworkService: NetworkServiceProtocol {
     private let logger = AppLogger(category: "Network")
     
     private var session: URLSession {
-        // Use an ephemeral session to avoid storing any data on disk.
-        // This ensures no cookies, caches, or credentials persist between launches,
-        // making it suitable for stateless API interactions and improved privacy.
+        /// Use an ephemeral session to avoid storing any data on disk.
+        /// This ensures no cookies, caches, or credentials persist between launches,
+        /// making it suitable for stateless API interactions and improved privacy.
         let config: URLSessionConfiguration = .ephemeral
         
-        // Explicitly disable all cookie handling for extra safety and statelessness.
+        /// Explicitly disable all cookie handling for extra safety and statelessness.
         config.httpCookieAcceptPolicy = .never
         config.httpCookieStorage = nil
         config.httpShouldSetCookies = false
@@ -118,12 +118,15 @@ actor NetworkService: NetworkServiceProtocol {
     private let requestBuilder: RequestBuilder = .init()
     private let responseHandler: ResponseHandler = .init()
     
-    // In-memory cache to store already downloaded image data using their url as key.
-    // This helps avoid redundant network calls and improves performance.
+    /// In-memory cache to store already downloaded image data using their url as key.
+    /// This helps avoid redundant network calls and improves performance.
     private var imageCache: [String: Data] = [:]
-
+    
+    /// A dictionary to keep track of ongoing downloads (reserved state).
+    private var imageDownloadTasks: [String: Task<Data, Error>] = [:]
+    
     // MARK: - Network Service Protocol Methods
-
+    
     /// Fetches a list of popular countries from the API.
     func fetchPopularCountries() async throws -> [Country] {
         return try await performRequest(endpoint: Endpoint.countries.path, method: .get, params: ["type": "popular"])
@@ -136,12 +139,31 @@ actor NetworkService: NetworkServiceProtocol {
     
     /// Downloads the raw image data for a country flag from a given URL string.
     func fetchCountryFlag(from urlString: String) async throws -> Data {
-        // Check if the image data is already cached
+        /// Check if the image data is already cached
         if let cachedImage = imageCache[urlString] {
             return cachedImage
         }
         
-        return try await performImageRequest(from: urlString)
+        /// Check if an image request is already ongoing for this URL
+        if let ongoingTask = imageDownloadTasks[urlString] {
+            /// Wait for the ongoing task to finish and return the result
+            return try await ongoingTask.value
+        }
+
+        /// Reserve the URL by creating a task to fetch the image
+        let task = taskWithRequestToFetchImage(from: urlString)
+        
+        /// Save the task in `imageDownloadTasks` to prevent duplicate requests
+        imageDownloadTasks[urlString] = task
+        
+        /// Wait for the task to finish and return the image data
+        let result = try await task.value
+        
+        /// Cache the downloaded image data and remove the task from `imageDownloadTasks`
+        imageCache[urlString] = result
+        imageDownloadTasks[urlString] = nil
+        
+        return result
     }
     
     // MARK: - Private Methods
@@ -179,7 +201,7 @@ actor NetworkService: NetworkServiceProtocol {
         let url = apiBaseURL.appending(path: endpoint)
         
         guard let params = params else { return url }
-            
+        
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
         return components?.url ?? url
@@ -191,36 +213,37 @@ actor NetworkService: NetworkServiceProtocol {
     /// measures the request duration, validates the HTTP response, and returns the image as raw `Data`.
     ///
     /// - Parameter urlString: A string representing the complete image URL.
-    /// - Returns: The raw image data.
+    /// - Returns: A `Task<Data, Error>` that can be awaited to get the image data.
     /// - Throws: A `NetworkError` if the URL is invalid or the response is invalid.
-    private func performImageRequest(from urlString: String) async throws -> Data {
-        guard let url = URL(string: urlString) else {
-            throw NetworkError.invalidURL(urlString)
-        }
-        
-        let startTime = Date()
-        let response: NetworkResponse = try await session.data(from: url)
-        let duration = Date().timeIntervalSince(startTime)
-        
-        guard let httpResponse = response.urlResponse as? HTTPURLResponse else {
-            throw NetworkError.invalidResponse
-        }
-        
-        #if DEBUG
-        logger.info("Image: \(url.lastPathComponent) - \(httpResponse.statusCode) - \(String(format: "%.2f", duration))s")
-        #endif
-        
-        switch httpResponse.statusCode {
-        case 200..<300:
-            // Cache and return the image data
-            imageCache[urlString] = response.data
-            return response.data
-        case 400..<500:
-            throw NetworkError.clientError(statusCode: httpResponse.statusCode)
-        case 500..<600:
-            throw NetworkError.serverError(statusCode: httpResponse.statusCode)
-        default:
-            throw NetworkError.unknownError(statusCode: httpResponse.statusCode)
+    private func taskWithRequestToFetchImage(from urlString: String) -> Task<Data, Error> {
+        return Task {
+            guard let url = URL(string: urlString) else {
+                throw NetworkError.invalidURL(urlString)
+            }
+            
+            let startTime = Date()
+            let response: NetworkResponse = try await session.data(from: url)
+            let duration = Date().timeIntervalSince(startTime)
+            
+            guard let httpResponse = response.urlResponse as? HTTPURLResponse else {
+                throw NetworkError.invalidResponse
+            }
+            
+            #if DEBUG
+            logger.info("Image: \(url.lastPathComponent) - \(httpResponse.statusCode) - \(String(format: "%.2f", duration))s")
+            #endif
+            
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Cache and return the image data
+                return response.data
+            case 400..<500:
+                throw NetworkError.clientError(statusCode: httpResponse.statusCode)
+            case 500..<600:
+                throw NetworkError.serverError(statusCode: httpResponse.statusCode)
+            default:
+                throw NetworkError.unknownError(statusCode: httpResponse.statusCode)
+            }
         }
     }
 }
