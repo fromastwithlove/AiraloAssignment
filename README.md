@@ -39,7 +39,6 @@ This iOS app is developed as part of the **Airalo technical interview assignment
 > written permission of Airalo.
 > Copyright ©2024 Airalo. All rights reserved.
 
-
 ### 2. API Integration
 - [x] Integrated with the provided Local eSIMs API using Postman reference.
 - [x] Implemented `NetworkService` to handle all API requests and response parsing.
