@@ -5,7 +5,7 @@
 //  Created by Adil Yergaliyev on 19.04.25.
 //
 
-struct CountryPackages: Codable {
+struct CountryPackages: Codable, Hashable {
     let id: Int
     let slug: String
     let title: String
@@ -13,7 +13,7 @@ struct CountryPackages: Codable {
     let packages: [Package]
 }
 
-struct Package: Codable, Identifiable {
+struct Package: Codable, Identifiable, Hashable {
     let id: Int
     let data: String
     let validity: String
@@ -26,7 +26,7 @@ struct Package: Codable, Identifiable {
     }
 }
 
-struct Operator: Codable {
+struct Operator: Codable, Hashable {
     let id: Int
     let title: String
     let style: String
