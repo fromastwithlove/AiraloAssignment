@@ -65,5 +65,3 @@ This iOS app is developed as part of the **Airalo technical interview assignment
 - [x] No Xcode warnings or build errors present.
 - [x] Unit tests implemented, covering the network layer and API integration to ensure proper data fetching and response handling.
 - [x] Documentation generated for the project and appended to the repository for future reference.
-
-
