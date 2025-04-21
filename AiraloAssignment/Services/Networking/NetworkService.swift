@@ -235,7 +235,6 @@ actor NetworkService: NetworkServiceProtocol {
             
             switch httpResponse.statusCode {
             case 200..<300:
-                // Cache and return the image data
                 return response.data
             case 400..<500:
                 throw NetworkError.clientError(statusCode: httpResponse.statusCode)
