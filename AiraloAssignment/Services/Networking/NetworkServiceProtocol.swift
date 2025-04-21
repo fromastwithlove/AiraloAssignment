@@ -16,7 +16,7 @@ import Foundation
 /// - Perform API requests related to countries, packages, and related media.
 /// - Return decoded model objects or raw data on success.
 /// - Propagate networking or decoding errors when needed.
-protocol NetworkServiceProtocol {
+protocol NetworkServiceProtocol: Sendable {
     /// Fetches a list of popular countries, typically shown in the Store screen.
     ///
     /// - Returns: An array of `Country` objects representing popular travel destinations.
