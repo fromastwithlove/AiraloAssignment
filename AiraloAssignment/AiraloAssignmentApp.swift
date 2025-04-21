@@ -14,7 +14,9 @@ struct AiraloAssignmentApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let model = PopularCountriesViewModel(networkService: appManager.services.networkService)
+            PopularCountriesView(model: model)
+                .environmentObject(appManager)
         }
     }
 }
