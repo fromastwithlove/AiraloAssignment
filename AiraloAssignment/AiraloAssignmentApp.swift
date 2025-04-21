@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct AiraloAssignmentApp: App {
+
+    @StateObject private var appManager: AppManager = .init(services: Services())
+
     var body: some Scene {
         WindowGroup {
             ContentView()
