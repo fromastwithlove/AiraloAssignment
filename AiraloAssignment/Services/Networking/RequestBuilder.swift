@@ -30,7 +30,7 @@ class RequestBuilder {
         }
         
         request.setValue(HTTPContentType.json, forHTTPHeaderField: HTTPHeader.accept)
-        request.setValue(Locale.current.language.languageCode?.identifier, forHTTPHeaderField: HTTPHeader.acceptLanguage)
+        request.setValue(Locale.current.region?.identifier.lowercased(), forHTTPHeaderField: HTTPHeader.acceptLanguage)
         
         return request
     }
