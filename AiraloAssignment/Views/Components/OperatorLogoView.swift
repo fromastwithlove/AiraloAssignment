@@ -16,6 +16,5 @@ struct OperatorLogoView: View {
                 .resizable()
                 .frame(width: 140, height: 88)
         }
-        .offset(x: -20, y: -20)
     }
 }

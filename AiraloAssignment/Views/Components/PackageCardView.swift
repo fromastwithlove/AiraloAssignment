@@ -72,6 +72,7 @@ struct PackageCardView: View {
             
             /// Operator Logo
             OperatorLogoView(model: model)
+                .offset(x: -20, y: -20)
                 .shadow(color: Color.black.opacity(0.15), radius: 30, x: 0, y: 10)
         }
         .padding(.top)
