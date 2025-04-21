@@ -34,7 +34,7 @@ enum HTTPContentType {
 
 // MARK: - Network Errors
 
-enum NetworkError: LocalizedError {
+enum NetworkError: Equatable, LocalizedError {
     case invalidURL(String)
     case invalidResponse
     case clientError(statusCode: Int)

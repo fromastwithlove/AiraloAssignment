@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		C579C7AD2DB6EF5D00BAD4E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5218AB22DB2CB27004DAD0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5218AB92DB2CB27004DAD0C;
+			remoteInfo = AiraloAssignment;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		C5218ABA2DB2CB27004DAD0C /* AiraloAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AiraloAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C579C7A92DB6EF5D00BAD4E0 /* AiraloAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AiraloAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +40,22 @@
 			path = AiraloAssignment;
 			sourceTree = "<group>";
 		};
+		C579C7AA2DB6EF5D00BAD4E0 /* AiraloAssignmentTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AiraloAssignmentTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C5218AB72DB2CB27004DAD0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C579C7A62DB6EF5D00BAD4E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				C5218ABC2DB2CB27004DAD0C /* AiraloAssignment */,
+				C579C7AA2DB6EF5D00BAD4E0 /* AiraloAssignmentTests */,
 				C5218ABB2DB2CB27004DAD0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				C5218ABA2DB2CB27004DAD0C /* AiraloAssignment.app */,
+				C579C7A92DB6EF5D00BAD4E0 /* AiraloAssignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +108,29 @@
 			productReference = C5218ABA2DB2CB27004DAD0C /* AiraloAssignment.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C579C7A82DB6EF5D00BAD4E0 /* AiraloAssignmentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C579C7B12DB6EF5D00BAD4E0 /* Build configuration list for PBXNativeTarget "AiraloAssignmentTests" */;
+			buildPhases = (
+				C579C7A52DB6EF5D00BAD4E0 /* Sources */,
+				C579C7A62DB6EF5D00BAD4E0 /* Frameworks */,
+				C579C7A72DB6EF5D00BAD4E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C579C7AE2DB6EF5D00BAD4E0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C579C7AA2DB6EF5D00BAD4E0 /* AiraloAssignmentTests */,
+			);
+			name = AiraloAssignmentTests;
+			packageProductDependencies = (
+			);
+			productName = AiraloAssignmentTests;
+			productReference = C579C7A92DB6EF5D00BAD4E0 /* AiraloAssignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +143,10 @@
 				TargetAttributes = {
 					C5218AB92DB2CB27004DAD0C = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					C579C7A82DB6EF5D00BAD4E0 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = C5218AB92DB2CB27004DAD0C;
 					};
 				};
 			};
@@ -113,12 +165,20 @@
 			projectRoot = "";
 			targets = (
 				C5218AB92DB2CB27004DAD0C /* AiraloAssignment */,
+				C579C7A82DB6EF5D00BAD4E0 /* AiraloAssignmentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C5218AB82DB2CB27004DAD0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C579C7A72DB6EF5D00BAD4E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +195,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C579C7A52DB6EF5D00BAD4E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C579C7AE2DB6EF5D00BAD4E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5218AB92DB2CB27004DAD0C /* AiraloAssignment */;
+			targetProxy = C579C7AD2DB6EF5D00BAD4E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C5218AC32DB2CB28004DAD0C /* Debug */ = {
@@ -317,6 +392,36 @@
 			};
 			name = Release;
 		};
+		C579C7AF2DB6EF5D00BAD4E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.airalo-assignment.AiraloAssignmentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AiraloAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AiraloAssignment";
+			};
+			name = Debug;
+		};
+		C579C7B02DB6EF5D00BAD4E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.airalo-assignment.AiraloAssignmentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AiraloAssignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AiraloAssignment";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +439,15 @@
 			buildConfigurations = (
 				C5218AC62DB2CB28004DAD0C /* Debug */,
 				C5218AC72DB2CB28004DAD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C579C7B12DB6EF5D00BAD4E0 /* Build configuration list for PBXNativeTarget "AiraloAssignmentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C579C7AF2DB6EF5D00BAD4E0 /* Debug */,
+				C579C7B02DB6EF5D00BAD4E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
