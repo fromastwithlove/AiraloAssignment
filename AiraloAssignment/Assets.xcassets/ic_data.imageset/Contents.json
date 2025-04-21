@@ -1,15 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
-      "color" : {
-        "color-space" : "srgb",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.290",
-          "green" : "0.290",
-          "red" : "0.290"
-        }
-      },
+      "filename" : "Dark Mode.svg",
       "idiom" : "universal"
     },
     {
@@ -25,5 +17,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

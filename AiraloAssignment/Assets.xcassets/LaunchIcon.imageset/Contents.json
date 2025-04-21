@@ -1,15 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
-      "color" : {
-        "color-space" : "srgb",
-        "components" : {
-          "alpha" : "1.000",
-          "blue" : "0.290",
-          "green" : "0.290",
-          "red" : "0.290"
-        }
-      },
+      "filename" : "AppIcon-Airalo@1024.png",
       "idiom" : "universal"
     },
     {

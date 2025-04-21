@@ -5,7 +5,7 @@
 //  Created by Adil Yergaliyev on 19.04.25.
 //
 
-struct ImageResource: Codable {
+struct ImageResource: Codable, Hashable {
     let width: Int
     let height: Int
     let url: String
