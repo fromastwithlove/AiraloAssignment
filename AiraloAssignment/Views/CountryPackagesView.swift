@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CountryPackagesView: View {
     
-    @Environment(\.dismiss) private var dismiss
-    
     @StateObject var model: CountryPackagesViewModel
     
     var body: some View {

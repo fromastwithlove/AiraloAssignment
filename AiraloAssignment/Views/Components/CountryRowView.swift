@@ -17,7 +17,7 @@ struct CountryRowView: View {
             AsyncImageView(model: model) { image in
                 image
                     .resizable()
-                    .frame(width: 37 ,height: 28)
+                    .frame(width: 37, height: 28)
             }
 
             /// Country name
