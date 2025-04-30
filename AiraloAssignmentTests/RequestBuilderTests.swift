@@ -33,7 +33,6 @@ import Foundation
         #expect(request.value(forHTTPHeaderField: HTTPHeader.acceptLanguage) == expectedRegion, "Accept-Language header should be \(expectedRegion ?? "unknown region")")
     }
     
-    
     @Test func testRequestBuilderWithoutTimeout() {
         // Arrange
         let requestBuilder = RequestBuilder()

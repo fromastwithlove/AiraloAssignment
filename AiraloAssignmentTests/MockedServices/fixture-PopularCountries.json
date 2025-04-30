@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "slug": "turkey",
+        "title": "Turkey",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-turkey.png"
+        }
+    },
+    {
+        "id": 2,
+        "slug": "germany",
+        "title": "Germany",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-germany.png"
+        }
+    },
+    {
+        "id": 3,
+        "slug": "japan",
+        "title": "Japan",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-japan.png"
+        }
+    },
+    {
+        "id": 4,
+        "slug": "france",
+        "title": "France",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-france.png"
+        }
+    },
+    {
+        "id": 5,
+        "slug": "italy",
+        "title": "Italy",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-italy.png"
+        }
+    },
+    {
+        "id": 6,
+        "slug": "spain",
+        "title": "Spain",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-spain.png"
+        }
+    },
+    {
+        "id": 7,
+        "slug": "united-kingdom",
+        "title": "United Kingdom",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-united-kingdom.png"
+        }
+    },
+    {
+        "id": 8,
+        "slug": "united-states",
+        "title": "United States",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-united-states.png"
+        }
+    },
+    {
+        "id": 9,
+        "slug": "canada",
+        "title": "Canada",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-canada.png"
+        }
+    },
+    {
+        "id": 10,
+        "slug": "portugal",
+        "title": "Portugal",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-portugal.png"
+        }
+    },
+    {
+        "id": 11,
+        "slug": "mexico",
+        "title": "Mexico",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-mexico.png"
+        }
+    },
+    {
+        "id": 12,
+        "slug": "china",
+        "title": "China",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-china.png"
+        }
+    },
+    {
+        "id": 13,
+        "slug": "greece",
+        "title": "Greece",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-greece.png"
+        }
+    },
+    {
+        "id": 14,
+        "slug": "thailand",
+        "title": "Thailand",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-thailand.png"
+        }
+    },
+    {
+        "id": 15,
+        "slug": "turkey",
+        "title": "Turkey",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "api/v2/image/flag-turkey.png"
+        }
+    }
+]

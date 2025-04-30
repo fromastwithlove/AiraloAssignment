@@ -1,0 +1,30 @@
+{
+  "id": 0,
+  "slug": "turkey",
+  "title": "Turkey",
+  "image": {
+    "width": 0,
+    "height": 0,
+    "url": "api/v2/image/flag-turkey.png"
+  },
+  "packages": [
+    {
+      "id": 1,
+      "data": "Unlimited",
+      "validity": "10 Days",
+      "price": 35,
+      "operator": {
+        "id": 1,
+        "title": "Merhaba",
+        "style": "light",
+        "gradient_start": "",
+        "gradient_end": "",
+        "image": {
+          "width": 0,
+          "height": 0,
+          "url": ""
+        }
+      }
+    }
+  ]
+}

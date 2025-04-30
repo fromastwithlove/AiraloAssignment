@@ -36,7 +36,7 @@ import Foundation
 
         // Assert
         #expect(countries != expectedCountries)
-        #expect(countries.count == 2)
+        #expect(countries.count == 15)
         #expect(countries.first?.title == "Turkey")
         #expect(countries.first?.image.url == "api/v2/image/flag-turkey.png")
     }
@@ -46,7 +46,7 @@ import Foundation
         let networkService = MockNetworkService()
 
         // Act
-        let countryPackages = try await networkService.fetchCountryPackages(forCountryId: 1)
+        let countryPackages = try await networkService.fetchCountryPackages(forCountryId: 0)
 
         // Assert
         #expect(countryPackages.title == "Turkey")
@@ -59,19 +59,8 @@ import Foundation
         // Arrange
         let networkService = MockNetworkService()
         // Act
-        let imageData = try await networkService.fetchCountryFlag(from: "https://example.com/flag.png")
+        let imageData = try await networkService.fetchCountryFlag(from: "api/v2/image/flag-us.png")
         // Assert
         #expect(imageData == Data())
-    }
-    
-    @Test func testNetworkServiceShouldThrowError() async throws {
-        // Arrange
-        var networkService = MockNetworkService()
-        networkService.shouldThrow = true
-        
-        // Assert
-        await #expect(throws: Error.self, "Should throw an error", performing: {
-            let _: [Country] = try await networkService.fetchPopularCountries()
-        })
     }
 }

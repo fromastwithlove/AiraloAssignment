@@ -31,6 +31,16 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		C5BFC6F52DC284CA00083066 /* Exceptions for "AiraloAssignmentTests" folder in "Compile Sources" phase from "AiraloAssignmentTests" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = C579C7A52DB6EF5D00BAD4E0 /* Sources */;
+			membershipExceptions = (
+				"MockedServices/fixture-CountryPackages.json",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C5218ABC2DB2CB27004DAD0C /* AiraloAssignment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -42,6 +52,9 @@
 		};
 		C579C7AA2DB6EF5D00BAD4E0 /* AiraloAssignmentTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C5BFC6F52DC284CA00083066 /* Exceptions for "AiraloAssignmentTests" folder in "Compile Sources" phase from "AiraloAssignmentTests" target */,
+			);
 			path = AiraloAssignmentTests;
 			sourceTree = "<group>";
 		};
