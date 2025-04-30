@@ -45,7 +45,7 @@ struct NavigationBarModifier: ViewModifier {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         /// Set the back button image with rendering mode
-        if let backButtonImage = UIImage(named: "ic_back_header")?.withRenderingMode(.alwaysTemplate) {
+        if let backButtonImage = UIImage(systemName: "chevron.backward")?.withRenderingMode(.alwaysTemplate) {
             UINavigationBar.appearance().backIndicatorImage = backButtonImage
             UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
         }

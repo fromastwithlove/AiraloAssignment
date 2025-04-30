@@ -15,9 +15,8 @@ struct PackageInfoRowView: View {
     
     var body: some View {
         HStack(spacing: 10) {
-            Image(iconName)
+            Image(systemName: iconName)
                 .renderingMode(.template)
-                .resizable()
                 .frame(width: 22, height: 22)
                 .foregroundStyle(colorMatchingStyle)
             Text(label)
@@ -39,12 +38,12 @@ struct PackageInfoRowView: View {
 }
 
 #Preview {
-    PackageInfoRowView(iconName: "ic_data",
+    PackageInfoRowView(iconName: "arrow.up.arrow.down",
                        label: "Data",
                        value: "1 GB",
                        colorMatchingStyle: Color.accentColor)
     
-    PackageInfoRowView(iconName: "ic_validity",
+    PackageInfoRowView(iconName: "calendar.badge.clock",
                        label: "Validity",
                        value: "7 Days",
                        colorMatchingStyle: Color.accentColor)

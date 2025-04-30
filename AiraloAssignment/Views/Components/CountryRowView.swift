@@ -28,8 +28,7 @@ struct CountryRowView: View {
                 .foregroundColor(Color.accentColor)
 
             /// Chevron arrow
-            Image("ic_arrow_general")
-                .resizable()
+            Image(systemName: "chevron.right")
                 .frame(width: 22,
                        height: 22)
         }

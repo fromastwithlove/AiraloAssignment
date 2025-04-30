@@ -35,7 +35,7 @@ struct PackageCardView: View {
                     .padding(.horizontal, -20)
                 
                 /// Data amount
-                PackageInfoRowView(iconName: "ic_data",
+                PackageInfoRowView(iconName: "arrow.up.arrow.down",
                                    label: "Data",
                                    value: package.data,
                                    colorMatchingStyle: colorMatchingStyle)
@@ -44,7 +44,7 @@ struct PackageCardView: View {
                     .padding(.horizontal, -20)
                 
                 /// Validity duration
-                PackageInfoRowView(iconName: "ic_validity",
+                PackageInfoRowView(iconName: "calendar.badge.clock",
                                    label: "Validity",
                                    value: package.validity,
                                    colorMatchingStyle: colorMatchingStyle)
