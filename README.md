@@ -30,14 +30,15 @@ This iOS app is developed as part of the **Airalo technical interview assignment
 ## ✅ Project Implementation
 
 ### 1. Project Setup
-- [x] Created and configured Xcode project in Swift with iOS 16+ support.
+- [x] Created and configured Xcode project in Swift with iOS 17+ support.
 - [x] Repository hosted on GitHub: [https://github.com/fromastwithlove/AiraloAssignment](https://github.com/fromastwithlove/AiraloAssignment)
-- **NOTE:** The repository is currently private because the assets (icons) and API used in the project belong to Airalo. 
+- **NOTE:** The repository is now public. All local assets originally provided by Airalo have been removed or replaced with open-source alternatives.
 
-> All rights are reserved by Airalo, and content may not be reproduced, downloaded,
-> disseminated, published, or transferred in any form or by any means, except with the prior
-> written permission of Airalo.
-> Copyright ©2024 Airalo. All rights reserved.
+> ⚠️ **Disclaimer**  
+> This project uses the backend API provided by [Airalo](https://www.airalo.com/), which is publicly accessible.  
+> The API and its data are the intellectual property of Airalo and are used here strictly for demonstration purposes as part of a technical assignment.  
+> All rights to the API and its content remain with Airalo.  
+> © 2024 Airalo. All rights reserved.
 
 ### 2. API Integration
 - [x] Integrated with the provided Local eSIMs API using Postman reference.
